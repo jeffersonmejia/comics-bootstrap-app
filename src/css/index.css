@@ -1,0 +1,12 @@
+body {
+	scroll-behavior: smooth;
+}
+
+main img {
+	border-radius: 0.5rem;
+}
+
+main figcaption {
+	border-bottom-left-radius: 0.5rem;
+	border-bottom-right-radius: 0.5rem;
+}
