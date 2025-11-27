@@ -22,8 +22,10 @@ services:
     depends_on:
       - web
     deploy:
-    placement:
-    constraints: [node.role == manager]
+      placement:
+        constraints:
+          - node.role == manager
+
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     ports:
@@ -36,6 +38,6 @@ services:
     networks:
       - frontend_net
 
-works:
+networks:
   frontend_net:
-  driver: overlay
+    driver: overlay
