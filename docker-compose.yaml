@@ -1,57 +1,61 @@
-version: '3.9'
+version: "3.9"
 
 services:
-  web1:
-    image: nginxdemos/hello
-    volumes:
-      - ./app:/usr/share/nginx/html
-    networks:
-      - frontend_net
 
-  web2:
-    image: nginxdemos/hello
+  db1:
+    image: mysql:8.0
+    container_name: db1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: noe123
+      MYSQL_DATABASE: comicsdb
     volumes:
-      - ./app:/usr/share/nginx/html
+      - db1_data:/var/lib/mysql
     networks:
-      - frontend_net
+      - internal_net
 
-  web3:
-    image: nginxdemos/hello
+  db2:
+    image: mysql:8.0
+    container_name: db2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: noe123
+      MYSQL_DATABASE: comicsdb
     volumes:
-      - ./app:/usr/share/nginx/html
+      - db2_data:/var/lib/mysql
     networks:
-      - frontend_net
+      - internal_net
 
-  haproxy:
-    image: haproxy:2.6
+  db3:
+    image: mysql:8.0
+    container_name: db3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: noe123
+      MYSQL_DATABASE: comicsdb
+    volumes:
+      - db3_data:/var/lib/mysql
+    networks:
+      - internal_net
+
+  haproxy_db:
+    image: haproxy:latest
+    container_name: haproxy_db
     ports:
-      - '8080:80'
-      - '8404:8404'
+      - "3307:3307"
     volumes:
-      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
-    networks:
-      - frontend_net
+      - ./haproxy/haproxy-db.cfg:/usr/local/etc/haproxy/haproxy.cfg
     depends_on:
-      - web1
-      - web2
-      - web3
-    deploy:
-      placement:
-        constraints:
-          - node.role == manager
-
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
-    ports:
-      - '9090:8080'
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
+      - db1
+      - db2
+      - db3
     networks:
-      - frontend_net
+      - internal_net
+
+volumes:
+  db1_data:
+  db2_data:
+  db3_data:
 
 networks:
-  frontend_net:
-    driver: overlay
+  internal_net:
