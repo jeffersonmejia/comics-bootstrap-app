@@ -1,4 +1,4 @@
-REATE USER 'haproxy'@'%' IDENTIFIED BY 'haproxy123';
-GRANT SELECT ON *.* TO 'haproxy';
+CREATE USER 'haproxy'@'%' IDENTIFIED BY 'haproxy123';
+GRANT SELECT ON *.* TO 'haproxy'@'%';
 FLUSH PRIVILEGES;
 
