@@ -1,14 +1,26 @@
 <?php
 include 'db.php';
-$pdo = db();
 
-if ($pdo) {
-    $message = "Éxito. La DB se conectó.";
-    $classMessage = "success-db-message";
-} else {
-    $message = "Error de conexión, la DB no respondió.";
-    $classMessage = "error-db-message";
+$message = '';
+$classMessage = '';
+$hostname = '';
+$ip = '';
+
+function checkDb() {
+    global $message, $classMessage;
+    $pdo = db();
+    $message = $pdo ? "Conectada" : "Desconectada";
+    $classMessage = $pdo ? "success-db-message" : "error-db-message";
 }
+
+function serverInfo() {
+    global $hostname, $ip;
+    $hostname = gethostname();
+    $ip = trim(shell_exec("hostname -i"));
+}
+
+checkDb();
+serverInfo();
 ?>
 
 <!DOCTYPE html>
@@ -49,9 +61,14 @@ if ($pdo) {
 			</div>
 		</nav>
 		
-         <div class="<?= $classMessage ?>">
-             <?php echo $message; ?>
-        </div>
+<div class="<?= $classMessage ?>">
+    <div class="box-text">
+        <div class="state-group"><strong>Host:</strong> <span><?= $hostname ?></span></div>
+        <div class="state-group"><strong>IP:</strong> <span><?= $ip ?></span></div>
+        <div class="state-group"><strong>Base de datos:</strong> <span><?= $message ?></span></div>
+    </div>
+</div>
+
                
 
 		<header class="mb-5">
