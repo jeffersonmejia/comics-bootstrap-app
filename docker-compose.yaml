@@ -4,58 +4,67 @@ services:
 
   db1:
     image: mysql:8.0
-    container_name: db1
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: noe123
       MYSQL_DATABASE: comicsdb
-    volumes:
-      - db1_data:/var/lib/mysql
     networks:
       - internal_net
+    volumes:
+      - db1_data:/var/lib/mysql
+    restart: always
 
   db2:
     image: mysql:8.0
-    container_name: db2
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: noe123
       MYSQL_DATABASE: comicsdb
-    volumes:
-      - db2_data:/var/lib/mysql
     networks:
       - internal_net
+    volumes:
+      - db2_data:/var/lib/mysql
+    restart: always
 
   db3:
     image: mysql:8.0
-    container_name: db3
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: noe123
       MYSQL_DATABASE: comicsdb
-    volumes:
-      - db3_data:/var/lib/mysql
     networks:
       - internal_net
+    volumes:
+      - db3_data:/var/lib/mysql
+    restart: always
 
   haproxy_db:
-    image: haproxy:latest
-    container_name: haproxy_db
+    build: ./haproxy
     ports:
       - "3307:3307"
-    volumes:
-      - ./haproxy/haproxy-db.cfg:/usr/local/etc/haproxy/haproxy.cfg
+      - "8404:8404"
+    networks:
+      - internal_net
     depends_on:
       - db1
       - db2
       - db3
+    restart: always
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    ports:
+      - "9090:8080"
     networks:
       - internal_net
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: always
+
+networks:
+  internal_net:
 
 volumes:
   db1_data:
   db2_data:
   db3_data:
-
-networks:
-  internal_net:
