@@ -62,7 +62,7 @@ if ($pdo) {
 					<p class="lead">Los héroes restantes unen fuerzas para derrotar a Thanos y restaurar el universo</p>
 					<div class="mt-4 d-flex justify-content-center flex-wrap gap-3">
 						<a href="#comics" class="btn btn-primary btn-lg">Ver Comics</a>
-						<a href="https://jeffersonmejia.github.io/portfolio-app/" target="_blank" class="btn btn-light btn-lg text-dark fw-bold">Conocer más proyectos</a>
+						<a href="#" target="_blank" class="btn btn-light btn-lg text-dark fw-bold">Conocer más proyectos</a>
 					</div>
 				</figcaption>
 			</figure>
@@ -165,19 +165,7 @@ if ($pdo) {
 		<footer class="bg-black text-white py-4 mt-5">
 			<div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
 				<div>
-					<span>© 2025 Jefferson Mejía</span>
-				</div>
-				<div>
-					<i class="bi bi-envelope-fill me-2"></i>
-					<a href="https://mail.google.com/mail/?view=cm&to=jeffersonmejiach01@gmail.com" target="_blank" class="text-white text-decoration-underline" id="contact-me">
-						jeffersonmejiach01@gmail.com
-					</a>
-				</div>
-				<div>
-					<i class="bi bi-linkedin me-2"></i>
-					<a href="https://www.linkedin.com/in/jeffersonmejia/" target="_blank" class="text-white text-decoration-underline">
-						linkedin.com/in/jeffersonmejia
-					</a>
+					<span>Jefferson Mejía, Noelia Mendoza</span>
 				</div>
 			</div>
 		</footer>
