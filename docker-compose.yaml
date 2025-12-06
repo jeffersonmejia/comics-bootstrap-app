@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
 
   db1:
@@ -13,11 +15,11 @@ services:
     networks:
       - internal_net
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-uroot", "-pnoe123"]
+      test: ["CMD-SHELL", "mysql -uhaproxy -phaproxy123 -e 'SELECT 1;' || exit 1"]
       interval: 5s
       timeout: 3s
       retries: 5
-      start_period: 10s
+      start_period: 120s
 
   db2:
     image: mysql:8.0
@@ -32,11 +34,11 @@ services:
     networks:
       - internal_net
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-uroot", "-pnoe123"]
+      test: ["CMD-SHELL", "mysql -uhaproxy -phaproxy123 -e 'SELECT 1;' || exit 1"]
       interval: 5s
       timeout: 3s
       retries: 5
-      start_period: 10s
+      start_period: 120s
 
   db3:
     image: mysql:8.0
@@ -51,11 +53,11 @@ services:
     networks:
       - internal_net
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-uroot", "-pnoe123"]
+      test: ["CMD-SHELL", "mysql -uhaproxy -phaproxy123 -e 'SELECT 1;' || exit 1"]
       interval: 5s
       timeout: 3s
       retries: 5
-      start_period: 10s
+      start_period: 120s
 
   haproxy_db:
     build:

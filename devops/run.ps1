@@ -49,7 +49,7 @@ function Cleanup-ProjectVolumes {
 
 function Start-Compose {
     Show-Phase "Starting docker-compose (DB cluster)..."
-    docker compose up -d db1 db2 db3 haproxy_db
+    docker compose up db1 db2 db3 haproxy_db
     Write-Host "[COMPOSE] Database cluster started." -ForegroundColor Green
 }
 
