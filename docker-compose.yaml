@@ -12,6 +12,12 @@ services:
       - ./init-haproxy-user.sql:/docker-entrypoint-initdb.d/init-haproxy-user.sql
     networks:
       - internal_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-pnoe123"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
 
   db2:
     image: mysql:8.0
@@ -25,6 +31,12 @@ services:
       - ./init-haproxy-user.sql:/docker-entrypoint-initdb.d/init-haproxy-user.sql
     networks:
       - internal_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-pnoe123"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
 
   db3:
     image: mysql:8.0
@@ -38,6 +50,12 @@ services:
       - ./init-haproxy-user.sql:/docker-entrypoint-initdb.d/init-haproxy-user.sql
     networks:
       - internal_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-pnoe123"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
 
   haproxy_db:
     build:
@@ -49,9 +67,12 @@ services:
       - "3307:3307"
       - "8404:8404"
     depends_on:
-      - db1
-      - db2
-      - db3
+      db1:
+        condition: service_healthy
+      db2:
+        condition: service_healthy
+      db3:
+        condition: service_healthy
     networks:
       - internal_net
 
