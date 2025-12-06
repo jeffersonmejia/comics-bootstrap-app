@@ -62,7 +62,7 @@ if ($pdo) {
 					<p class="lead">Los héroes restantes unen fuerzas para derrotar a Thanos y restaurar el universo</p>
 					<div class="mt-4 d-flex justify-content-center flex-wrap gap-3">
 						<a href="#comics" class="btn btn-primary btn-lg">Ver Comics</a>
-						<a href="#" target="_blank" class="btn btn-light btn-lg text-dark fw-bold">Conocer más proyectos</a>
+						<a href="#"  class="btn btn-light btn-lg text-dark fw-bold">Conocer más proyectos</a>
 					</div>
 				</figcaption>
 			</figure>
