@@ -162,12 +162,12 @@ if ($pdo) {
 			</section>
 		</main>
 
-		<footer class="bg-black text-white py-4 mt-5">
-			<div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-				<div>
+		<footer class="bg-black text-white py-4 mt-5 ">
+			
+				<div class="d-block text-center">
 					<span>Jefferson Mejía, Noelia Mendoza</span>
 				</div>
-			</div>
+			
 		</footer>
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
