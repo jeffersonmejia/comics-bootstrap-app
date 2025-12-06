@@ -9,6 +9,7 @@ services:
       MYSQL_DATABASE: comicsdb
     volumes:
       - db1_data:/var/lib/mysql
+      - ./init-haproxy-user.sql:/docker-entrypoint-initdb.d/init-haproxy-user.sql
     networks:
       - internal_net
 
@@ -21,6 +22,7 @@ services:
       MYSQL_DATABASE: comicsdb
     volumes:
       - db2_data:/var/lib/mysql
+      - ./init-haproxy-user.sql:/docker-entrypoint-initdb.d/init-haproxy-user.sql
     networks:
       - internal_net
 
@@ -33,6 +35,7 @@ services:
       MYSQL_DATABASE: comicsdb
     volumes:
       - db3_data:/var/lib/mysql
+      - ./init-haproxy-user.sql:/docker-entrypoint-initdb.d/init-haproxy-user.sql
     networks:
       - internal_net
 
@@ -73,3 +76,4 @@ volumes:
 
 networks:
   internal_net:
+
