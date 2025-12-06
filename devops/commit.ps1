@@ -26,8 +26,8 @@ function Push-Changes($branch) {
 }
 
 function Main {
+
     $branch = "web_jef"
-    
     $message = Read-Host "Commit message"
     Write-Host "Starting process..." -ForegroundColor DarkCyan
     Switch-Branch $branch
