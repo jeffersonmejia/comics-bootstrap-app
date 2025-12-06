@@ -1,3 +1,16 @@
+<?php
+include 'db.php';
+$pdo = db();
+
+if ($pdo) {
+    $message = "Éxito. La DB se conectó.";
+    $classMessage = "success-db-message";
+} else {
+    $message = "Error de conexión, la DB no respondió.";
+    $classMessage = "error-db-message";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -35,6 +48,11 @@
 				</div>
 			</div>
 		</nav>
+		
+         <div class="<?= $classMessage ?>">
+             <?php echo $message; ?>
+        </div>
+               
 
 		<header class="mb-5">
 			<figure class="position-relative m-0">
