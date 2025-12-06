@@ -1,10 +1,22 @@
 version: '3.9'
 
 services:
-  web:
+  web1:
     image: nginxdemos/hello
-    deploy:
-      replicas: 3
+    volumes:
+      - ./app:/usr/share/nginx/html
+    networks:
+      - frontend_net
+
+  web2:
+    image: nginxdemos/hello
+    volumes:
+      - ./app:/usr/share/nginx/html
+    networks:
+      - frontend_net
+
+  web3:
+    image: nginxdemos/hello
     volumes:
       - ./app:/usr/share/nginx/html
     networks:
@@ -20,7 +32,9 @@ services:
     networks:
       - frontend_net
     depends_on:
-      - web
+      - web1
+      - web2
+      - web3
     deploy:
       placement:
         constraints:
