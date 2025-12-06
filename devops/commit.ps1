@@ -26,7 +26,7 @@ function Push-Changes($branch) {
 }
 
 function Main {
-    $branch = "docker"
+    $branch = "web_jef"
     
     $message = Read-Host "Commit message"
     Write-Host "Starting process..." -ForegroundColor DarkCyan
