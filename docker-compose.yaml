@@ -1,42 +1,35 @@
-version: "3.9"
+version: '3.9'
 
 services:
-  web1:
+  web:
     image: nginxdemos/hello
-    restart: on-failure
-    networks:
-      - frontend_net
-
-  web2:
-    image: nginxdemos/hello
-    restart: on-failure
-    networks:
-      - frontend_net
-
-  web3:
-    image: nginxdemos/hello
-    restart: on-failure
+    deploy:
+      replicas: 3
+    volumes:
+      - ./app:/usr/share/nginx/html
     networks:
       - frontend_net
 
   haproxy:
     image: haproxy:2.6
     ports:
-      - "8080:80"
-      - "8404:8404"
+      - '8080:80'
+      - '8404:8404'
     volumes:
       - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
     networks:
       - frontend_net
     depends_on:
-      - web1
-      - web2
-      - web3
+      - web
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     ports:
-      - "9090:8080"
+      - '9090:8080'
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
@@ -47,4 +40,4 @@ services:
 
 networks:
   frontend_net:
-    driver: bridge
+    driver: overlay
