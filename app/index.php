@@ -160,6 +160,42 @@
 				<div class="d-block text-center">
 					<span>Jefferson Mejía, Noelia Mendoza</span>
 				</div>
+
+<?php include 'crud.php'; ?>
+
+<footer class="bg-black text-white py-5" id="contact-me">
+    <div class="container">
+        <h4 class="mb-3">Contact Form</h4>
+        <form method="post" class="mb-4">
+            <div class="row g-3">
+                <div class="col-md-4"><input type="text" name="name" class="form-control" placeholder="Name" required></div>
+                <div class="col-md-4"><input type="email" name="email" class="form-control" placeholder="Email" required></div>
+                <div class="col-md-4"><input type="text" name="message" class="form-control" placeholder="Message" required></div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Send</button>
+        </form>
+
+        <h5 class="mb-3">Sent Messages</h5>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr><th>Name</th><th>Email</th><th>Message</th><th>Time</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+            <?php foreach($messages as $m): ?>
+                <tr>
+                    <td><?= htmlspecialchars($m['name']) ?></td>
+                    <td><?= htmlspecialchars($m['email']) ?></td>
+                    <td><?= htmlspecialchars($m['message']) ?></td>
+                    <td><?= $m['created_at'] ?></td>
+                    <td><a href="?delete=<?= $m['id'] ?>" class="btn btn-sm btn-danger">Delete</a></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</footer>
+
+
 			
 		</footer>
 

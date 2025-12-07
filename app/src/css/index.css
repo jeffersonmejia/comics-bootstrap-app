@@ -34,14 +34,22 @@ main figcaption {
     opacity: 0.95;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     color: #fff;
-    transition: background 0.3s ease-in;
+    transition: transform 0.5s ease, bottom 0.5s ease;
+    transform: translateY(0);
 }
 
 .error-db-message {
     background: #ffb6b6;
     color: #400a0a;
 }
+
 .success-db-message {
     background: #b6ffb6;
     color: #0a400a;
+}
+
+body .box-top{
+    bottom: calc(80vh - 1rem);
+    transform: translateY(0);
+    z-index: 1999;
 }
