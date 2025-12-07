@@ -2,7 +2,7 @@
 
 $DB_HOST = '10.147.19.250';
 $DB_PORT = 3307;
-$DB_NAME = 'comicsdb';
+$DB_NAME = 'haproxy_db';
 $DB_USER = 'jef';
 $DB_PASS = 'jef123';
 
@@ -18,14 +18,12 @@ function db() {
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES => false
             ]);
-            $status = "Connected";
-            error_log("DB Status: $status");
         } catch (PDOException $e) {
             $pdo = null;
-            $status = "Disconnected";
-            $error = $e->getMessage();
-            error_log("DB Status: $status | Error: $error");
         }
+
+        $estado = $pdo ? "Connected" : "Disconnected";
+        error_log("Estado DB: $estado");
     }
 
     return $pdo;
