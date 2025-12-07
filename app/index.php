@@ -1,29 +1,3 @@
-<?php
-include 'db.php';
-
-$message = '';
-$classMessage = '';
-$hostname = '';
-$ip = '';
-
-function checkDb() {
-    global $message, $classMessage;
-    $pdo = db();
-    $message = $pdo ? "Conectada" : "Desconectada";
-    $classMessage = $pdo ? "success-db-message" : "error-db-message";
-}
-
-function serverInfo() {
-    global $hostname, $ip;
-    $hostname = $_SERVER['NGINX_HOST'] ?? gethostname();
-    $ip = $_SERVER['NGINX_IP'] ?? trim(shell_exec("hostname -i"));
-}
-
-checkDb();
-serverInfo();
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -62,13 +36,14 @@ serverInfo();
 			</div>
 		</nav>
 		
-<div class="<?= $classMessage ?>">
+<div id="server-box" class="box">
     <div class="box-text">
-        <div class="state-group"><strong>Host:</strong> <span><?= $hostname ?></span></div>
-        <div class="state-group"><strong>IP:</strong> <span><?= $ip ?></span></div>
-        <div class="state-group"><strong>Base de datos:</strong> <span><?= $message ?></span></div>
+        <div class="state-group"><strong>Host:</strong> <span id="host"></span></div>
+        <div class="state-group"><strong>IP:</strong> <span id="ip"></span></div>
+        <div class="state-group"><strong>Base de datos:</strong> <span id="db"></span></div>
     </div>
 </div>
+
 
                
 
