@@ -7,7 +7,7 @@ $hostname = $_SERVER['NGINX_HOST'] ?? '';
 $ip = $_SERVER['NGINX_IP'] ?? '';
 
 $pdo = db();
-$message = $pdo ? "Connected" : "Disconnected";
+$message = $pdo ? "Conectada" : "Desconectada";
 
 echo json_encode([
     'hostname' => $hostname,
