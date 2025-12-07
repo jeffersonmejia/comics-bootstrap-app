@@ -34,6 +34,7 @@ main figcaption {
     opacity: 0.95;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     color: #fff;
+    transition: background 0.3s ease-in;
 }
 
 .error-db-message {
