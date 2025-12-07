@@ -1,9 +1,9 @@
 <?php
 
-$DB_HOST = '10.147.19.250';
-$DB_NAME = 'comics_db';
-$DB_USER = 'noe';
-$DB_PASS = 'noe';
+$DB_HOST = '10.147.19.250:3307';
+$DB_NAME = 'haproxy_db';
+$DB_USER = 'jef';
+$DB_PASS = 'jef123';
 
 function db() {
     global $DB_HOST, $DB_NAME, $DB_USER, $DB_PASS;
