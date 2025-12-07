@@ -15,13 +15,14 @@ function checkDb() {
 
 function serverInfo() {
     global $hostname, $ip;
-    $hostname = gethostname();
-    $ip = trim(shell_exec("hostname -i"));
+    $hostname = $_SERVER['NGINX_HOST'] ?? gethostname();
+    $ip = $_SERVER['NGINX_IP'] ?? trim(shell_exec("hostname -i"));
 }
 
 checkDb();
 serverInfo();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
